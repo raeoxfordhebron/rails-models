@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_28_211318) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_28_211705) do
+  create_table "children", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.integer "parent_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_children_on_parent_id"
+  end
+
   create_table "parents", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -18,4 +27,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_211318) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "children", "parents"
 end
