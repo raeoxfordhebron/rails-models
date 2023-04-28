@@ -3,7 +3,7 @@ class CreateTeenagers < ActiveRecord::Migration[7.0]
     create_table :teenagers do |t|
       t.string :name
       t.integer :age
-      t.references :parent, null: false, foreign_key: true
+      t.belongs_to :parent, null: true, foreign_key: true
 
       t.timestamps
     end

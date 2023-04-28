@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_28_211705) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_28_213432) do
   create_table "children", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_211705) do
     t.index ["parent_id"], name: "index_children_on_parent_id"
   end
 
+  create_table "grandchildren", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_grandchildren_on_parent_id"
+  end
+
   create_table "parents", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -27,5 +36,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_211705) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "teenagers", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_teenagers_on_parent_id"
+  end
+
   add_foreign_key "children", "parents"
+  add_foreign_key "teenagers", "parents"
 end
